@@ -1,0 +1,20 @@
+generator client {
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "debian-openssl-1.1.x"]
+    output        = "../../../node_modules/@prisma-clients/auth"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("AUTH_DATABASE_URL")
+}
+
+
+model User {
+    id       Int    @id @default(autoincrement())
+    email    String @unique
+    password String 
+    phone    String
+    username String @unique
+    role     String
+}
